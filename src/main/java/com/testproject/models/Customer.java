@@ -11,17 +11,13 @@ public class Customer {
     String email;
     String phone;
 
-    Date date = new Date();
-    //TODO зробити шось з кріейт і апдейт
-    //
 
     public Customer() {
-
     }
 
     public Customer(Long id, Long updated, String full_name, String email, String phone) {
         this.id = id;
-        this.created = date.getTime();
+        this.created = new Date().getTime();
         this.updated = updated;
         this.full_name = full_name;
         this.email = email;
