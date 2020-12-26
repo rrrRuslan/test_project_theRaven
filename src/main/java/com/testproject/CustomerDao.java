@@ -38,6 +38,7 @@ public class CustomerDao {
 
     Connection connection = dbConn();
 
+    static final List<Long> FAKE_DELETED = new ArrayList<>();
 
     public static Connection dbConn() {
 
@@ -158,7 +159,7 @@ public class CustomerDao {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
+//        if (checkFakeDeleted(searched)) return null;
         return searched;
 
     }
@@ -178,5 +179,17 @@ public class CustomerDao {
 
     }
 
+    /*
+    Методи для того щоб позначити користувача видаленим,
+    записують id в масив FAKE_DELETED і при спробах доступу до об'єкта
+    перевіряю чи присутнє його ід в FAKE_DELETED
+     */
+    public boolean checkFakeDeleted(Customer customer){
+        return  (FAKE_DELETED.contains(customer.getId()));
+    }
+
+    public void fakeDelete(Long id){
+        FAKE_DELETED.add(id);
+    }
 
 }

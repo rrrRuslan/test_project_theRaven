@@ -13,12 +13,23 @@ public class CustomerController {
 
     CustomerDao customerDao = new CustomerDao();
 
-
+/*
+    Повне видалення об'єкта з бд
+ */
     @DeleteMapping("/api/customers/{id}")
     public ResponseEntity<Long> deleteCustomer(@PathVariable Long id){
         customerDao.sqlDeleteCustomer(id);
         return new ResponseEntity<>(id, HttpStatus.OK);
     }
+
+/*
+     "Видалення" об'єкта , залишаючи його в базі
+ */
+//    @DeleteMapping("/api/customers/{id}")
+//    public ResponseEntity<Long> fakeDelete(@PathVariable Long id){
+//        customerDao.fakeDelete(id);
+//        return new ResponseEntity<>(id, HttpStatus.OK);
+//    }
 
     @PostMapping("/api/customers")
     @ResponseBody
